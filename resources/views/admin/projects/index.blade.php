@@ -7,7 +7,7 @@
                 {{ session('deleted') }}
             </div>
         @endif
-        <table class="table p-3">
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -15,6 +15,7 @@
                     <th scope="col">Descrizione</th>
                     <th scope="col">Data D'inizio</th>
                     <th scope="col">Tipo Progetto</th>
+                    <th scope="col">Tecnologie</th>
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
@@ -25,20 +26,31 @@
                         <td>{{ $project->title }}</td>
                         <td>{{ $project->description }}</td>
                         <td>{{ $project->start_date }}</td>
-                        <td><span class="badge text-bg-info">{{ $project->type?->name }}</span>
+                        <td><span class="badge text-bg-success">{{ $project->type?->name }}</span></td>
+                        <td class="wide-td">
+                            @forelse ($project->technologies as $technology)
+                                <span class="badge text-bg-info ">{{ $technology->name }}</span>
+                            @empty
+                                -
+                            @endforelse
                         </td>
-                        <td><a href="{{ route('admin.projects.show', $project) }}" class="btn btn-warning"><i
-                                    class="fa-solid fa-eye"></i></a></td>
-                        <td><a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-primary"><i
-                                    class="fa-solid fa-pencil"></i></a></td>
-                        <td>
+                        <td class="d-flex">
+                            <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-warning me-2">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-primary me-2">
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
                             <form class="d-inline" action="{{ route('admin.projects.destroy', $project) }}" method="POST"
                                 onsubmit="return confirm('Vuoi eliminare')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </form>
                         </td>
+
                     </tr>
                 @endforeach
             </tbody>

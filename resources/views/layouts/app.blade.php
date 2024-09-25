@@ -16,7 +16,7 @@
     @include('admin.partials.header')
     <div class="d-flex my-container">
         @include('admin.partials.sidebar')
-        <div class="p-3 content">
+        <div class="content p-3">
             @yield('content')
         </div>
     </div>
