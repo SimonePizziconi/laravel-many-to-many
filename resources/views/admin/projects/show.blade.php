@@ -15,6 +15,14 @@
             <small>Tipo di Progetto:
                 {{ $project->type?->name ? $project->type->name : 'Non è stato assegnato nessun tipo' }}</small>
             <br>
+            <small>Tecnologie:
+                @forelse ($project->technologies as $technology)
+                    <small>{{ $technology->name }}</small>
+                @empty
+                    <span>Non è stato assegnato nessuna tecnologia</span>
+                @endforelse
+            </small>
+            <br>
             <small>Url: {{ $project->project_url }}</small>
             <br>
             <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-primary"><i
