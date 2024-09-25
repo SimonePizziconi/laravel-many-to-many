@@ -32,6 +32,17 @@
             @endforeach
         </select>
         <div class="mb-3">
+            <label for="type" class="form-label d-block">Tecnologie</label>
+            @foreach ($technologies as $technology)
+                <input name="technologies[]" type="checkbox" class="btn-check" id="check-{{ $technology->id }}"
+                    autocomplete="off" value="{{ $technology->id }}" {{-- validazione checked --}} @checked(
+                        ($errors->any() && in_array($technology->id, old('technologies', []))) ||
+                            (!$errors->any() && $project->technologies->contains($technology->id)))>
+                <label class="btn btn-primary" for="check-{{ $technology->id }}">{{ $technology->name }}</label>
+            @endforeach
+        </div>
+
+        <div class="mb-3">
             <label for="client" class="form-label">Cliente</label>
             <input type="text" class="form-control @error('client') is-invalid @enderror" id="client" name="client"
                 value="{{ old('client', $project->client) }}">
