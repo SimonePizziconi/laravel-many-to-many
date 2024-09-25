@@ -1,0 +1,27 @@
+.my-container{
+    height: calc(100vh - 50px);
+}
+
+header{
+    height: 50px;
+    color: #fff;
+}
+
+.my-sidebar{
+    height: 100%;
+    width: 250px;
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+}
+
+li{
+    list-style-type: none;
+}
+
+.content{
+    overflow: auto;
+    width: calc(100% - 250px);
+}
