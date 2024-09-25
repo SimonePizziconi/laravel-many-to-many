@@ -37,7 +37,7 @@
             <label for="type" class="form-label d-block">Tecnologie</label>
             @foreach ($technologies as $technology)
                 <input name="technologies[]" type="checkbox" class="btn-check" id="check-{{ $technology->id }}"
-                    autocomplete="off" value="{{ $technology->id }}">
+                    autocomplete="off" value="{{ $technology->id }}" @checked(in_array($technology->id, old('technologies', [])))>
                 <label class="btn btn-primary" for="check-{{ $technology->id }}">{{ $technology->name }}</label>
             @endforeach
         </div>
